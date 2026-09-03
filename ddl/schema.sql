@@ -1,8 +1,5 @@
--- SET CATALOG iceberg;
-
 CREATE SCHEMA IF NOT EXISTS iceberg.analytics;
 
--- Orders: main fact table
 CREATE TABLE iceberg.analytics.orders (
     order_id       BIGINT,
     customer_id    BIGINT,
@@ -17,8 +14,7 @@ WITH (
     partitioning = ARRAY['month(order_ts)']
 );
 
--- Customers
-CREATE TABLE analytics.customers (
+CREATE TABLE iceberg.analytics.customers (
     customer_id    BIGINT,
     name           VARCHAR(100),
     email          VARCHAR(200),
@@ -29,8 +25,7 @@ WITH (
     format = 'PARQUET'
 );
 
--- Products
-CREATE TABLE analytics.products (
+CREATE TABLE iceberg.analytics.products (
     product_id     BIGINT,
     name           VARCHAR(200),
     category       VARCHAR(30),
@@ -40,8 +35,7 @@ WITH (
     format = 'PARQUET'
 );
 
--- Order line items
-CREATE TABLE analytics.order_items (
+CREATE TABLE iceberg.analytics.order_items (
     item_id        BIGINT,
     order_id       BIGINT,
     product_id     BIGINT,
@@ -52,8 +46,7 @@ WITH (
     format = 'PARQUET'
 );
 
--- Events
-CREATE TABLE analytics.events (
+CREATE TABLE iceberg.analytics.events (
     event_id       BIGINT,
     event_ts       TIMESTAMP,
     customer_id    BIGINT,
@@ -63,5 +56,5 @@ CREATE TABLE analytics.events (
 )
 WITH (
     format = 'PARQUET',
-    partitioning = ARRAY['hour(event_ts)']
+    partitioning = ARRAY['month(event_ts)']
 );

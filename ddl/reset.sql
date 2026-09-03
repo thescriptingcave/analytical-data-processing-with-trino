@@ -1,8 +1,5 @@
-
-
-DROP TABLE IF EXISTS iceberg.analytics.events CASCADE;
-DROP TABLE IF EXISTS iceberg.analytics.order_items CASCADE;
-DROP TABLE IF EXISTS iceberg.analytics.orders CASCADE;
-DROP TABLE IF EXISTS iceberg.analytics.products CASCADE;
-DROP TABLE IF EXISTS iceberg.analytics.customers CASCADE;
-  s
+DROP TABLE IF EXISTS iceberg.analytics.events;
+DROP TABLE IF EXISTS iceberg.analytics.order_items;
+DROP TABLE IF EXISTS iceberg.analytics.orders;
+DROP TABLE IF EXISTS iceberg.analytics.products;
+DROP TABLE IF EXISTS iceberg.analytics.customers;
