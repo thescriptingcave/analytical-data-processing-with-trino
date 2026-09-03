@@ -1,0 +1,60 @@
+# --- Docker volumes / local data ---
+pgdata/
+miniodata/
+data/
+warehouse/
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Trino local state ---
+etc/data/
+etc/plugin/
+usr/lib/trino/plugin/*/
+!usr/lib/trino/plugin/iceberg/
+drivers/*.jar
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Environment / secrets ---
+.env
+.env.local
+*.pem
+*.key
+credentials.json
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# --- OS ---
+.DS_Store
+._*
+Thumbs.db
+
+# --- Analysis artifacts ---
+*.parquet
+*.csv
+*.xlsx
+output/
+results/
+tmp/
+temp/
+
+# --- Makefile targets ---
+dist/
+build/
