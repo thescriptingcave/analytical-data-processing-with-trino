@@ -11,7 +11,8 @@ down:
 	docker compose down
 
 trino:
-	docker container exec -it trino-coordinator trino
+	docker exec -it trino trino --catalog iceberg --schema analytics  
+
 
 minio:
 	open "http://localhost:9001"
@@ -26,3 +27,12 @@ metadata-db:
 	docker exec -ti mariadb /usr/bin/mariadb -padmin
 
 restart: down up
+
+schema:
+	docker exec -i trino trino --catalog iceberg --schema analytics < schema.sql
+
+load:
+	docker exec -i trino trino --catalog iceberg --schema analytics < ./data/data.sql
+
+reset:
+	docker compose exec trino trino --file ./ddl/reset.sql	
