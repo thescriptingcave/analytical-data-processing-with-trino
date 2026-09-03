@@ -1,7 +1,6 @@
 # --- Docker volumes / local data ---
 pgdata/
 miniodata/
-data/
 warehouse/
 
 # --- Python ---
