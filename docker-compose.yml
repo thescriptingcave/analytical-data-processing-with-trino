@@ -55,8 +55,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./etc:/etc/trino:ro
-      - ./drivers/postgresql.jar:/usr/lib/trino/plugin/iceberg/postgresql.jar:ro
+      - ./etc:/etc/trino:ro    
     depends_on:
       postgres:
         condition: service_healthy
