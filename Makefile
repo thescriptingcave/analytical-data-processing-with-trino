@@ -28,9 +28,7 @@ load: wait
 		< data/data.sql
 
 verify: wait
-	docker compose exec -T trino \
-		trino --catalog iceberg --schema analytics \
-		< ddl/verify.sql
+	./scripts/verify.sh
 
 setup: up wait init load verify
 
@@ -54,3 +52,4 @@ logs:
 
 ps:
 	docker compose ps
+
