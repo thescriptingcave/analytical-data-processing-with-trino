@@ -1,0 +1,14 @@
+[project]
+name = "analytical-dp-with-sql"
+version = "0.1.0"
+description = "Analytical data platform for learning time-series SQL, CTEs, window functions, and Apache Iceberg"
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "pandas>=3.0.5",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.6",
+]

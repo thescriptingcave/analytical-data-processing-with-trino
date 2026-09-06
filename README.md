@@ -86,6 +86,7 @@ Install:
 - Docker Compose
 - Git
 - Make
+- uv
 
 The project has been tested with Docker Desktop on macOS.
 
@@ -96,11 +97,24 @@ docker --version
 docker compose version
 git --version
 make --version
+uv --version
 ```
 
 ---
 
 # Quick Start
+
+```markdown
+## Detailed Setup Guide
+
+For a complete clean-machine setup, including the Python environment,
+Olist source data, Iceberg table creation, ingestion, validation, and
+restart behavior, see:
+
+[Getting Started](docs/getting-started.md)
+
+The Olist source CSV files are not included in this repository and must
+be obtained separately before running the Olist ingestion workflow.
 
 Clone the repository:
 
