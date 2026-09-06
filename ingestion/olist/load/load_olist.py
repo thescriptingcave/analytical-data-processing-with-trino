@@ -104,6 +104,21 @@ TABLES = {
             ("seller_state", "seller_state", "string"),
         ],
     },
+    "product_category_translation": {
+        "file": "product_category_name_translation.csv",
+        "columns": [
+            (
+                "product_category_name",
+                "product_category_name",
+                "string",
+            ),
+            (
+                "product_category_name_english",
+                "product_category_name_english",
+                "string",
+            ),
+        ],
+    },
     "geolocation": {
         "file": "olist_geolocation_dataset.csv",
         "columns": [
@@ -164,18 +179,25 @@ def execute_sql(sql):
 def load_table(table_name, config):
     path = SOURCE_DIR / config["file"]
 
-    existing_rows = get_table_count(table_name)
-
-    if existing_rows != 0:
-        raise RuntimeError(
-            f"Refusing to load {table_name}: "
-            f"table already contains {existing_rows:,} rows"
-        )
-
-    print(f"\nLoading {table_name}")
+    print(f"\nChecking {table_name}")
     print(f"Source: {path}")
 
     df = pd.read_csv(path, dtype=str)
+    source_rows = len(df)
+    target_rows = get_table_count(table_name)
+
+    if target_rows == source_rows:
+        print(f"Skipping {table_name}: already complete with {target_rows:,} rows")
+        return
+
+    if target_rows != 0:
+        raise RuntimeError(
+            f"Cannot safely resume {table_name}: "
+            f"source has {source_rows:,} rows but "
+            f"target contains {target_rows:,} rows"
+        )
+
+    print(f"Loading {table_name}: {source_rows:,} rows")
 
     source_columns = [source for source, _, _ in config["columns"]]
 
